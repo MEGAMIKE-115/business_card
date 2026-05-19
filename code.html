@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="es" style=""><head></head><body class="flex items-start justify-center py-8 px-4 relative"><svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="#0b0f19" name="theme-color">
+<title>MEGA WASHER'S | Vehicle Detailing</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&amp;family=Rajdhani:wght@400;500;600&amp;family=Exo+2:wght@300;400&amp;display=swap" rel="stylesheet">
+<style>
+    :root {
+      --cyan: #00f5ff;
+      --electric: #0066ff;
+      --neon-green: #00ffb3;
+      --glow-cyan: rgba(0, 245, 255, 0.35);
+      --glow-blue: rgba(0, 102, 255, 0.35);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #0b0f19;
+      font-family: 'Exo 2', sans-serif;
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+    /* ── SCANLINE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 245, 255, 0.018) 2px,
+        rgba(0, 245, 255, 0.018) 4px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* ── CARD ENTRY ── */
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(42px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0)   scale(1); }
+    }
+    .card-enter {
+      animation: cardIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    /* ── FLOAT ── */
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-8px); }
+    }
+    .floating { animation: floatY 5s ease-in-out infinite; }
+    /* ── BLOBS ── */
+    @keyframes blobDrift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%       { transform: translate(30px, -20px) scale(1.05); }
+      66%       { transform: translate(-20px, 15px) scale(0.95); }
+    }
+    .blob { animation: blobDrift 12s ease-in-out infinite; }
+    .blob2 { animation: blobDrift 16s ease-in-out infinite reverse; }
+    /* ── AVATAR BORDER ── */
+    @keyframes spinGrad {
+      to { transform: rotate(360deg); }
+    }
+    .avatar-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        #00f5ff, #0066ff, #00ffb3, #00f5ff
+      );
+      animation: spinGrad 3s linear infinite;
+      z-index: 0;
+    }
+    .avatar-ring::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      background: #131b2e;
+    }
+    /* ── TITLE GLOW ── */
+    .title-glow {
+      font-family: 'Orbitron', monospace;
+      letter-spacing: 0.05em;
+      text-shadow:
+        0 0 8px  rgba(0, 245, 255, 0.9),
+        0 0 24px rgba(0, 245, 255, 0.55),
+        0 0 60px rgba(0, 102, 255, 0.4);
+    }
+    /* ── SUBTITLE NEON ── */
+    .subtitle-neon {
+      font-family: 'Rajdhani', sans-serif;
+      letter-spacing: 0.35em;
+      color: #00ffb3;
+      text-shadow:
+        0 0 6px  rgba(0, 255, 179, 1),
+        0 0 18px rgba(0, 255, 179, 0.75),
+        0 0 45px rgba(0, 255, 179, 0.45);
+    }
+    /* ── DIVIDER ── */
+    .cyber-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #00f5ff55, #00f5ff, #00f5ff55, transparent);
+      position: relative;
+    }
+    .cyber-divider::before, .cyber-divider::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #00f5ff;
+      box-shadow: 0 0 10px #00f5ff;
+    }
+    .cyber-divider::before { left: calc(50% - 30px); }
+    .cyber-divider::after  { left: calc(50% + 24px); }
+    /* ── CORNER BRACKETS ── */
+    .corner-tl, .corner-tr, .corner-bl, .corner-br {
+      position: absolute;
+      width: 20px; height: 20px;
+    }
+    .corner-tl { top: 10px; left: 10px; border-top: 2px solid #00f5ff; border-left: 2px solid #00f5ff; border-radius: 4px 0 0 0; }
+    .corner-tr { top: 10px; right: 10px; border-top: 2px solid #00f5ff; border-right: 2px solid #00f5ff; border-radius: 0 4px 0 0; }
+    .corner-bl { bottom: 10px; left: 10px; border-bottom: 2px solid #00f5ff; border-left: 2px solid #00f5ff; border-radius: 0 0 0 4px; }
+    .corner-br { bottom: 10px; right: 10px; border-bottom: 2px solid #00f5ff; border-right: 2px solid #00f5ff; border-radius: 0 0 4px 0; }
+    /* ── BTN PRIMARY ── */
+    .btn-primary {
+      background: linear-gradient(135deg, #0066ff, #00c8ff, #00ffb3);
+      background-size: 200% 200%;
+      animation: gradShift 4s ease infinite;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 0 18px rgba(0,200,255,0.45), 0 4px 20px rgba(0,102,255,0.35);
+    }
+    @keyframes gradShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .btn-primary:active { transform: scale(0.95); box-shadow: 0 0 10px rgba(0,200,255,0.3); }
+    /* ── BTN SECONDARY ── */
+    .btn-secondary {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(0, 245, 255, 0.25);
+      transition: transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-secondary:hover { border-color: rgba(0,245,255,0.6); box-shadow: 0 0 14px rgba(0,245,255,0.2); }
+    .btn-secondary:active { transform: scale(0.95); }
+    /* ── TIKTOK ICON GLOW ── */
+    .tiktok-icon {
+      background: linear-gradient(135deg, #69C9D0, #EE1D52, #010101);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 6px rgba(105,201,208,0.8));
+    }
+    /* ── STATUS DOT ── */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+    .status-dot { animation: pulse 2s ease-in-out infinite; }
+    /* ── GRID PATTERN ── */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(0,245,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,245,255,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    /* ── STAT CARD ── */
+    .stat-card {
+      background: rgba(0,245,255,0.04);
+      border: 1px solid rgba(0,245,255,0.12);
+      border-radius: 10px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    /* ── LOGO TEXT ── */
+    .logo-font { font-family: 'Orbitron', monospace; }
+    .desc-font  { font-family: 'Rajdhani', sans-serif; }
+    
+    /* ── MODAL CLASSES ── */
+    .modal-bg-active { opacity: 1 !important; }
+    .modal-card-active { transform: scale(1) translateY(0) !important; opacity: 1 !important; }
+  </style>
+
+
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+<div class="blob absolute -top-24 -left-24 w-80 h-80 rounded-full opacity-30" style="background: radial-gradient(circle, #0066ff 0%, transparent 70%); filter: blur(60px);"></div>
+<div class="blob2 absolute -bottom-16 -right-16 w-96 h-96 rounded-full opacity-25" style="background: radial-gradient(circle, #00f5ff 0%, transparent 70%); filter: blur(70px);"></div>
+<div class="blob absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full opacity-10" style="background: radial-gradient(circle, #00ffb3 0%, transparent 70%); filter: blur(80px);"></div>
+</div>
+<div class="fixed inset-0 grid-bg opacity-60 pointer-events-none z-0"></div>
+<div class="card-enter floating relative z-10 w-full max-w-sm">
+<div class="relative rounded-3xl overflow-hidden" style="background: rgba(19,27,46,0.85); border: 1px solid rgba(0,245,255,0.18); backdrop-filter: blur(16px); box-shadow: 0 0 0 1px rgba(0,245,255,0.06), 0 25px 60px rgba(0,0,0,0.7), 0 0 80px rgba(0,102,255,0.12), inset 0 1px 0 rgba(255,255,255,0.06);">
+<div class="corner-tl"></div>
+<div class="corner-tr"></div>
+<div class="corner-bl"></div>
+<div class="corner-br"></div>
+<div class="absolute top-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, #00f5ff80, #0066ffcc, #00f5ff80, transparent);"></div>
+<div class="px-6 pt-8 pb-6">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<div class="status-dot w-2 h-2 rounded-full bg-emerald-400" style="box-shadow: 0 0 8px #34d399;"></div>
+<span class="desc-font text-xs text-slate-400 tracking-widest uppercase">DOMICILIOS</span>
+</div>
+<div class="desc-font text-xs text-slate-600 tracking-wider">Creador web MIGEl</div>
+</div>
+<div class="flex flex-col items-center mb-6">
+<div class="relative mb-5" style="width: 112px; height: 112px;">
+<div class="avatar-ring"></div>
+<div class="relative z-10 w-full h-full rounded-full overflow-hidden flex items-center justify-center bg-[#0d1426]" style="border: 2px solid #131b2e;">
+<img alt="MEGA WASHER'S LOGO" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/150/0d1426/00f5ff?text=MW';" src="https://lh3.googleusercontent.com/aida/ADBb0ujYTX4ic0M2z8rAR6DoBzlQSS4FLQu7HJgQ5xDn0uIALsejJGCQUv0Wi914zUsb4a_pAc-3eYvTS5NtNhLGwhCpiBYlKmF3sWfDJywRIkLrDdB2k8VwmCAE5SCxEa9fZHTRa4NDVShJpS6hRGgG0Y4dwPfNTe4YxixqlTBEXSKURE4lc5LxHt1F2ssDo7CxcB112qRstF46oDeLf5x9uNJhpAzF3vx5EUZ3tlDizAuaq_JMqY_P5Fnnj77W20jB2x_5kJbLyOfeYQ">
+</div>
+</div>
+<h1 class="title-glow text-white text-center mb-1" style="font-size: 1.55rem; line-height: 1.1;">
+            MEGA WASHER'S
+          </h1>
+<p class="subtitle-neon text-sm font-bold mb-4">VEHICLE DETAILING</p>
+<div class="cyber-divider w-full mb-4"></div>
+<p class="desc-font text-slate-300 text-center leading-relaxed" style="font-size: 0.88rem; font-weight: 400; letter-spacing: 0.01em;">
+            Transformo vehículos a domicilio combinando técnicas de estética automotriz premium y optimización tecnológica.
+            <span style="color: rgb(0, 255, 179); font-weight: 600;" class=""> ¿Listo para el siguiente nivel?</span>
+</p>
+</div>
+<div class="grid grid-cols-3 gap-2 mb-6">
+<div class="stat-card flex flex-col items-center py-2.5 px-1">
+<span class="logo-font text-base font-black" style="color: rgb(0, 245, 255);">100%</span>
+<span class="desc-font text-slate-500 text-xs tracking-wide">Calidad</span>
+</div>
+<div class="stat-card flex flex-col items-center py-2.5 px-1">
+<span class="logo-font text-base font-black" style="color: rgb(0, 245, 255);">A+</span>
+<span class="desc-font text-slate-500 text-xs tracking-wide">Premium</span>
+</div>
+<div class="stat-card flex flex-col items-center py-2.5 px-1">
+<span class="logo-font text-base font-black" style="color: rgb(0, 245, 255);">24/7</span>
+<span class="desc-font text-slate-500 text-xs tracking-wide">Domicilio</span>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<a class="btn-primary flex items-center justify-center gap-3 w-full py-3.5 px-5 rounded-2xl no-underline" href="https://megamike-115.github.io/mega-washer-s/" rel="noopener noreferrer" target="_blank">
+<i class="fas fa-globe text-white text-lg" style="filter: drop-shadow(0 0 6px rgba(255,255,255,0.6));"></i>
+<span class="logo-font text-white font-black tracking-wide" style="font-size: 0.82rem; letter-spacing: 0.08em;">
+              VISITAR SITIO WEB OFICIAL
+            </span>
+</a>
+<a class="btn-secondary flex items-center justify-center gap-3 w-full py-3.5 px-5 rounded-2xl no-underline" href="https://www.tiktok.com/@mega_mige_" rel="noopener noreferrer" target="_blank">
+<svg fill="none" height="20" style="flex-shrink:0;" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="ttGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#69C9D0"></stop>
+<stop offset="50%" stop-color="#ee1d52"></stop>
+<stop offset="100%" stop-color="#010101"></stop>
+</linearGradient>
+</defs>
+<path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.16 8.16 0 0 0 4.78 1.53V6.84a4.85 4.85 0 0 1-1.01-.15z" fill="url(#ttGrad)"></path>
+</svg>
+<span class="logo-font text-slate-200 font-black tracking-wide" style="font-size: 0.82rem; letter-spacing: 0.08em;">
+              VER CONTENIDO EN TIKTOK
+            </span>
+</a>
+<button class="btn-secondary flex items-center justify-center gap-3 w-full py-3.5 px-5 rounded-2xl border-none" id="openQrBtn">
+<i class="fab fa-whatsapp text-emerald-400 text-lg" style="filter: drop-shadow(0 0 6px rgba(52,211,153,0.6));"></i>
+<span class="logo-font text-slate-200 font-black tracking-wide" style="font-size: 0.82rem; letter-spacing: 0.08em;">
+              CONTACTAR POR WHATSAPP
+            </span>
+</button>
+</div>
+<div class="mt-6 flex items-center justify-center gap-2 opacity-40">
+<div class="h-px flex-1" style="background: linear-gradient(90deg, transparent, rgba(0,245,255,0.4));"></div>
+<span class="desc-font text-slate-500 text-xs tracking-widest uppercase">MW · 2026</span>
+<div class="h-px flex-1" style="background: linear-gradient(90deg, rgba(0,245,255,0.4), transparent);"></div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, #0066ff60, #00f5ff80, #0066ff60, transparent);"></div>
+</div>
+</div>
+<!-- QR Modal -->
+<div class="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 opacity-0 pointer-events-none" id="qrModal">
+<div class="absolute inset-0 bg-[#0b0f19]/80 backdrop-blur-md opacity-0 transition-opacity duration-300" id="qrBackdrop"></div>
+<div class="relative z-10 p-6 rounded-3xl opacity-0 translate-y-8 scale-95 transition-all duration-500" id="qrCard" style="background: rgba(19,27,46,0.9); border: 1px solid rgba(0,255,179,0.3); box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 40px rgba(0,255,179,0.15);">
+<div class="corner-tl" style="border-color: #00ffb3;"></div>
+<div class="corner-tr" style="border-color: #00ffb3;"></div>
+<div class="corner-bl" style="border-color: #00ffb3;"></div>
+<div class="corner-br" style="border-color: #00ffb3;"></div>
+<div class="text-center mb-5">
+<i class="fab fa-whatsapp text-3xl text-[#00ffb3] mb-2" style="filter: drop-shadow(0 0 8px rgba(0,255,179,0.6));"></i>
+<h3 class="logo-font text-white text-lg tracking-wider">WHATSAPP</h3>
+</div>
+<div class="bg-white p-3 rounded-2xl shadow-[0_0_20px_rgba(0,255,179,0.2)]">
+<img alt="WhatsApp QR Code" class="w-56 h-56 object-contain rounded-xl border border-slate-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEck2LNOseVyDRQiOGLM5YhPAou0wEmcS2JvE4bGKvHx8leA47B2aMJdn9vUZqr2A4XG4RPvO2dJ0rzK6kvQH5zf71OjrRvM45IEpFJfVIlAiUa7z18xKjjKukeCM-WcETWYOe2XzoJmXv6DsFD0XWTsmFgQ27NtTdKGWtQ5GpdU8RKm0AfbdHBnfO1NG5o0ZviQgB08lqE15MCFYTQEl8ufZ_ZvmMu4DV1iL7f3gbiLJa-hOehuIqiPKn4y2s12dUVtH4ZkE_T4g">
+</div>
+<p class="desc-font text-center text-slate-300 text-sm mt-5 tracking-wide">
+      Escanea para contactarnos
+    </p>
+</div>
+</div>
+<script>
+  const openQrBtn = document.getElementById('openQrBtn');
+  const qrModal = document.getElementById('qrModal');
+  const qrBackdrop = document.getElementById('qrBackdrop');
+  const qrCard = document.getElementById('qrCard');
+
+  if (openQrBtn && qrModal && qrBackdrop && qrCard) {
+    openQrBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      qrModal.classList.remove('opacity-0', 'pointer-events-none');
+      qrBackdrop.classList.add('modal-bg-active');
+      qrCard.classList.add('modal-card-active');
+    });
+
+    qrBackdrop.addEventListener('click', () => {
+      qrModal.classList.add('opacity-0', 'pointer-events-none');
+      qrBackdrop.classList.remove('modal-bg-active');
+      qrCard.classList.remove('modal-card-active');
+    });
+  }
+</script>
+
+
+</body></html>
